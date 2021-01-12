@@ -1,0 +1,3208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>2048 Board game</title>
+<style>
+	.board{
+		font-size:32px;
+		font-weight:bold;
+		border-collapse:collapse;
+		margin:20px auto;
+	}
+	.board td input{
+		border:6px solid #bbada0;
+		width:100px;
+		height:100px;
+		text-align:center;
+	}
+	.header{
+		font-size:75px;
+		border: 2px solid yellow;
+		border-radius:20px;
+		background-color:yellow;
+		color:white;
+		width:200px;
+		text-align:center;
+		margin:10px auto 0px;
+		padding-bottom:10px;
+	}
+</style>
+</head>
+<body>
+		<div>
+			<div><h1 class="header">2048</h1></div>
+		</div>
+		<table class="board" onkeydown="buttonPress(event)" onkeyup="win()">
+			<tr>
+				<td><input id="r1c1"  name="0" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r1c2"  name="1" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r1c3"  name="2" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r1c4"  name="3" type="button" value="&nbsp;&nbsp;"></td>
+			</tr>
+			<tr>
+				<td><input id="r2c1"  name="4" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r2c2"  name="5" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r2c3"  name="6" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r2c4"  name="7" type="button" value="&nbsp;&nbsp;"></td>
+			</tr>
+			<tr>
+				<td><input id="r3c1"  name="8" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r3c2"  name="9" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r3c3"  name="10" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r3c4"  name="11" type="button" value="&nbsp;&nbsp;"></td>
+			</tr>
+			<tr>
+				<td><input id="r4c1"  name="12" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r4c2"  name="13" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r4c3"  name="14" type="button" value="&nbsp;&nbsp;"></td>
+				<td><input id="r4c4"  name="15" type="button" value="&nbsp;&nbsp;"></td>
+			</tr>
+		</table>
+		
+		<script>
+		
+			var x = Math.floor(Math.random() * 16);
+			var y = Math.floor(Math.random() * 16);
+
+			var a = Number(document.getElementById("r1c1").name);
+			var b = Number(document.getElementById("r1c2").name);
+			var c = Number(document.getElementById("r1c3").name);
+			var d = Number(document.getElementById("r1c4").name);
+			var e = Number(document.getElementById("r2c1").name);
+			var f = Number(document.getElementById("r2c2").name);
+			var g = Number(document.getElementById("r2c3").name);
+			var h = Number(document.getElementById("r2c4").name);
+			var i = Number(document.getElementById("r3c1").name);
+			var j = Number(document.getElementById("r3c2").name);
+			var k = Number(document.getElementById("r3c3").name);
+			var l = Number(document.getElementById("r3c4").name);
+			var m = Number(document.getElementById("r4c1").name);
+			var n = Number(document.getElementById("r4c2").name);
+			var o = Number(document.getElementById("r4c3").name);
+			var p = Number(document.getElementById("r4c4").name);
+			
+			
+			
+			randomFortwo();
+			randomForFour();
+			
+			// random no. two generated
+			function randomFortwo(){
+			
+					if(x==a){
+						document.getElementById("r1c1").value = 2;
+					}else if(x==b){
+						document.getElementById("r1c2").value = 2;
+					}else if(x==c){
+						document.getElementById("r1c3").value = 2;
+					}else if(x==d){
+						document.getElementById("r1c4").value = 2;
+					}else if(x==e){
+						document.getElementById("r2c1").value = 2;
+					}else if(x==f){
+						document.getElementById("r2c2").value = 2;
+					}else if(x==g){
+						document.getElementById("r2c3").value = 2;
+					}else if(x==h){
+						document.getElementById("r2c4").value = 2;
+					}else if(x==i){
+						document.getElementById("r3c1").value = 2;
+					}else if(x==j){
+						document.getElementById("r3c2").value = 2;
+					}else if(x==k){
+						document.getElementById("r3c3").value = 2;
+					}else if(x==l){
+						document.getElementById("r3c4").value = 2;
+					}else if(x==m){
+						document.getElementById("r4c1").value = 2;
+					}else if(x==n){
+						document.getElementById("r4c2").value = 2;
+					}else if(x==o){
+						document.getElementById("r4c3").value = 2;
+					}else if(x==p){
+						document.getElementById("r4c4").value = 2;
+					}
+			}
+			
+			// random no. four generated
+			function randomForFour(){
+			
+					if(y==a){
+						document.getElementById("r1c1").value = 4;
+					}else if(y==b){
+						document.getElementById("r1c2").value = 4;
+					}else if(y==c){
+						document.getElementById("r1c3").value = 4;
+					}else if(y==d){
+						document.getElementById("r1c4").value = 4;
+					}else if(y==e){
+						document.getElementById("r2c1").value = 4;
+					}else if(y==f){
+						document.getElementById("r2c2").value = 4;
+					}else if(y==g){
+						document.getElementById("r2c3").value = 4;
+					}else if(y==h){
+						document.getElementById("r2c4").value = 4;
+					}else if(y==i){
+						document.getElementById("r3c1").value = 4;
+					}else if(y==j){
+						document.getElementById("r3c2").value = 4;
+					}else if(y==k){
+						document.getElementById("r3c3").value = 4;
+					}else if(y==l){
+						document.getElementById("r3c4").value = 4;
+					}else if(y==m){
+						document.getElementById("r4c1").value = 4;
+					}else if(y==n){
+						document.getElementById("r4c2").value = 4;
+					}else if(y==o){
+						document.getElementById("r4c3").value = 4;
+					}else if(y==p){
+						document.getElementById("r4c4").value = 4;
+					}
+					
+					
+					if(x==y){
+						document.getElementById("r2c3").value = 2;	
+					}
+			}
+				
+		// random place generation
+			function randomPlace(){
+			debugger
+				var z = Math.floor(Math.random() * 16);
+				
+				if(z==a){
+					var a1 = Number(document.getElementById("r1c1").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r1c1").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==b){
+					var a1 = Number(document.getElementById("r1c2").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r1c2").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==c){
+					var a1 = Number(document.getElementById("r1c3").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r1c3").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==d){
+					var a1 = Number(document.getElementById("r1c4").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r1c4").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==e){
+					var a1 = Number(document.getElementById("r2c1").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r2c1").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==f){
+					var a1 = Number(document.getElementById("r2c2").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r2c2").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==g){
+					var a1 = Number(document.getElementById("r2c3").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r2c3").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==h){
+					var a1 = Number(document.getElementById("r2c4").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r2c4").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==i){
+					var a1 = Number(document.getElementById("r3c1").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r3c1").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==j){
+					var a1 = Number(document.getElementById("r3c2").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r3c2").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==k){
+					var a1 = Number(document.getElementById("r3c3").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r3c3").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==l){
+					var a1 = Number(document.getElementById("r3c4").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r3c4").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==m){
+					var a1 = Number(document.getElementById("r4c1").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r4c1").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==n){
+					var a1 = Number(document.getElementById("r4c2").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r4c2").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==o){
+					var a1 = Number(document.getElementById("r4c3").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r4c3").value = dis;
+						}else{
+							randomPlace();
+						}
+				}else if(z==p){
+					var a1 = Number(document.getElementById("r4c4").value);
+						if(a1==0){
+							var dis = (Math.random() <= 0.8) ? 2 : 4;
+							document.getElementById("r4c4").value = dis;
+						}else{
+							randomPlace();
+						}
+				}
+			}
+		
+		function buttonPress(event){
+			debugger
+			var keys = event.key;
+					
+			if(keys == "ArrowUp"){
+				upDirection();
+			}else if(keys == "ArrowDown"){
+				downDirection();
+			}else if(keys == "ArrowLeft"){
+				leftDirection();
+			}else if(keys == "ArrowRight"){
+				rightDirection();
+			}
+		}
+		
+		
+		// up direction	
+		function upDirection(){	
+			upRandom();
+			//  first column function
+			function firstColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c1").value);
+					var x3 = Number(document.getElementById("r3c1").value);
+					var x2 = Number(document.getElementById("r2c1").value);
+					var x1 = Number(document.getElementById("r1c1").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c1").value = sum;
+								document.getElementById("r3c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r3c1").value = sum;
+								document.getElementById("r4c1").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r1c1").value =  sum;
+								document.getElementById("r2c1").value = sum1;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c1").value =  sum;
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").valu2 = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c1").value =  sum;
+								document.getElementById("r3c1").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}else if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r2c1").value = sum;
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r3c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r2c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+								
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r1c1").value = x2;
+								document.getElementById("r2c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r1c1").value = x2;
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").valu2 = x4;
+								document.getElementById("r4c1").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+							}else{
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r1c1").value = x3;
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r4c1").value = " ";
+							}else{
+								document.getElementById("r1c1").value = x2;
+								document.getElementById("r2c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r3c1").value = " ";
+							}else{
+								document.getElementById("r1c1").value = x2;
+								document.getElementById("r2c1").value = x3;
+								document.getElementById("r3c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r1c1").value = x1;
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r1c1").value = x2;
+								document.getElementById("r2c1").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r1c1").value = x3;
+								document.getElementById("r3c1").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r1c1").value = x4;
+								document.getElementById("r4c1").value = " ";
+						}			
+			}
+			
+			
+			// second column function
+			function secondColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c2").value);
+					var x3 = Number(document.getElementById("r3c2").value);
+					var x2 = Number(document.getElementById("r2c2").value);
+					var x1 = Number(document.getElementById("r1c2").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c2").value = sum;
+								document.getElementById("r3c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r3c2").value = sum;
+								document.getElementById("r4c2").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r1c2").value =  sum;
+								document.getElementById("r2c2").value = sum1;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c2").value =  sum;
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").valu2 = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c2").value =  sum;
+								document.getElementById("r3c2").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}else if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r2c2").value = sum;
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r3c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r2c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+								
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r1c2").value = x2;
+								document.getElementById("r2c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r1c2").value = x2;
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").valu2 = x4;
+								document.getElementById("r4c2").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+							}else{
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r1c2").value = x3;
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r4c2").value = " ";
+							}else{
+								document.getElementById("r1c2").value = x2;
+								document.getElementById("r2c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r3c2").value = " ";
+							}else{
+								document.getElementById("r1c2").value = x2;
+								document.getElementById("r2c2").value = x3;
+								document.getElementById("r3c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r1c2").value = x1;
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r1c2").value = x2;
+								document.getElementById("r2c2").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r1c2").value = x3;
+								document.getElementById("r3c2").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r1c2").value = x4;
+								document.getElementById("r4c2").value = " ";
+						}
+			}
+			
+			// third Column function
+			function thirdColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c3").value);
+					var x3 = Number(document.getElementById("r3c3").value);
+					var x2 = Number(document.getElementById("r2c3").value);
+					var x1 = Number(document.getElementById("r1c3").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c3").value = sum;
+								document.getElementById("r3c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r3c3").value = sum;
+								document.getElementById("r4c3").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r1c3").value =  sum;
+								document.getElementById("r2c3").value = sum1;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c3").value =  sum;
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").valu2 = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c3").value =  sum;
+								document.getElementById("r3c3").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}else if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r2c3").value = sum;
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r3c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r2c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+								
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r1c3").value = x2;
+								document.getElementById("r2c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r1c3").value = x2;
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").valu2 = x4;
+								document.getElementById("r4c3").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+							}else{
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r1c3").value = x3;
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r4c3").value = " ";
+							}else{
+								document.getElementById("r1c3").value = x2;
+								document.getElementById("r2c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r3c3").value = " ";
+							}else{
+								document.getElementById("r1c3").value = x2;
+								document.getElementById("r2c3").value = x3;
+								document.getElementById("r3c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r1c3").value = x1;
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r1c3").value = x2;
+								document.getElementById("r2c3").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r1c3").value = x3;
+								document.getElementById("r3c3").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r1c3").value = x4;
+								document.getElementById("r4c3").value = " ";
+						}
+			}
+			
+			// forth Column function
+			function forthColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c4").value);
+					var x3 = Number(document.getElementById("r3c4").value);
+					var x2 = Number(document.getElementById("r2c4").value);
+					var x1 = Number(document.getElementById("r1c4").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c4").value = sum;
+								document.getElementById("r3c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r3c4").value = sum;
+								document.getElementById("r4c4").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r1c4").value =  sum;
+								document.getElementById("r2c4").value = sum1;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c4").value =  sum;
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").valu2 = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r2c4").value =  sum;
+								document.getElementById("r3c4").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}else if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r2c4").value = sum;
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r3c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r2c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+								
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r1c4").value = x2;
+								document.getElementById("r2c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r1c4").value = x2;
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").valu2 = x4;
+								document.getElementById("r4c4").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+							}else{
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r1c4").value = x3;
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r4c4").value = " ";
+							}else{
+								document.getElementById("r1c4").value = x2;
+								document.getElementById("r2c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r1c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r3c4").value = " ";
+							}else{
+								document.getElementById("r1c4").value = x2;
+								document.getElementById("r2c4").value = x3;
+								document.getElementById("r3c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r1c4").value = x1;
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r1c4").value = x2;
+								document.getElementById("r2c4").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r1c4").value = x3;
+								document.getElementById("r3c4").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r1c4").value = x4;
+								document.getElementById("r4c4").value = " ";
+						}
+			}
+			
+			function upRandom(){
+				var a1=Number(document.getElementById("r1c1").value);
+				var a2=Number(document.getElementById("r1c2").value);
+				var a3=Number(document.getElementById("r1c3").value);
+				var a4=Number(document.getElementById("r1c4").value);
+				var a5=Number(document.getElementById("r2c1").value);
+				var a6=Number(document.getElementById("r2c2").value);
+				var a7=Number(document.getElementById("r2c3").value);
+				var a8=Number(document.getElementById("r2c4").value);
+				var a9=Number(document.getElementById("r3c1").value);
+				var a10=Number(document.getElementById("r3c2").value);
+				var a11=Number(document.getElementById("r3c3").value);
+				var a12=Number(document.getElementById("r3c4").value);
+				var a13=Number(document.getElementById("r4c1").value);
+				var a14=Number(document.getElementById("r4c2").value);
+				var a15=Number(document.getElementById("r4c3").value);
+				var a16=Number(document.getElementById("r4c4").value);
+				
+				var as=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16];
+				var i;
+				
+				for(i=0;i<as.length;i++){
+					if(as[i]!==0){
+						if(as[i-4]==0 || as[i]==as[i-4]){
+							firstColumn();
+							secondColumn();
+							thirdColumn();
+							forthColumn();
+							randomPlace();
+							break
+						}
+					}
+				} 
+			}
+			
+			
+		}
+		
+		// down Direction
+		function downDirection(){
+			downRandom();
+			
+			// first column function 
+			function firstColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c1").value);
+					var x3 = Number(document.getElementById("r3c1").value);
+					var x2 = Number(document.getElementById("r2c1").value);
+					var x1 = Number(document.getElementById("r1c1").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = x2;
+								document.getElementById("r2c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c1").value = sum;
+								document.getElementById("r2c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r2c1").value = sum;
+								document.getElementById("r1c1").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r4c1").value = sum1;
+								document.getElementById("r3c1").value =  sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c1").value =  sum;
+								document.getElementById("r3c1").valu2 = x1;
+								document.getElementById("r2c1").value =  " ";
+								document.getElementById("r1c1").valu2 =  " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c1").value = x3;
+								document.getElementById("r3c1").value =  sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r4c1").value = x3;
+								document.getElementById("r3c1").value =  x2;
+								document.getElementById("r2c1").valu2 = x1;
+								document.getElementById("r1c1").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = x1;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r3c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r3c1").value = x2;
+								document.getElementById("r2c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}else if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r3c1").value = sum;
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r2c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = x2;
+								document.getElementById("r2c1").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r4c1").value = x2;
+								document.getElementById("r3c1").value = x1;
+								document.getElementById("r2c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r3c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r1c1").value = " ";
+							}else{
+								document.getElementById("r4c1").value = x3;
+								document.getElementById("r3c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r2c1").value = " ";
+							}else{
+								document.getElementById("r3c1").value = x2;
+								document.getElementById("r2c1").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c1").value = sum;
+								document.getElementById("r3c1").value = " ";
+								document.getElementById("r2c1").value = " ";
+							}else{
+								document.getElementById("r4c1").value = x3;
+								document.getElementById("r3c1").value = x2;
+								document.getElementById("r2c1").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r4c1").value = x1;
+								document.getElementById("r1c1").value = " ";
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r4c1").value = x2;
+								document.getElementById("r2c1").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r4c1").value = x3;
+								document.getElementById("r3c1").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r4c1").value = x4;
+						}
+			}
+			
+			// second column function 
+			function secondColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c2").value);
+					var x3 = Number(document.getElementById("r3c2").value);
+					var x2 = Number(document.getElementById("r2c2").value);
+					var x1 = Number(document.getElementById("r1c2").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = x2;
+								document.getElementById("r2c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c2").value = sum;
+								document.getElementById("r2c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r2c2").value = sum;
+								document.getElementById("r1c2").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r4c2").value = sum1;
+								document.getElementById("r3c2").value =  sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c2").value =  sum;
+								document.getElementById("r3c2").valu2 = x1;
+								document.getElementById("r2c2").value =  " ";
+								document.getElementById("r1c2").valu2 =  " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c2").value = x3;
+								document.getElementById("r3c2").value =  sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r4c2").value = x3;
+								document.getElementById("r3c2").value =  x2;
+								document.getElementById("r2c2").valu2 = x1;
+								document.getElementById("r1c2").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = x1;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r3c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r3c2").value = x2;
+								document.getElementById("r2c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}else if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r3c2").value = sum;
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r2c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = x2;
+								document.getElementById("r2c2").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r4c2").value = x2;
+								document.getElementById("r3c2").value = x1;
+								document.getElementById("r2c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r3c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r1c2").value = " ";
+							}else{
+								document.getElementById("r4c2").value = x3;
+								document.getElementById("r3c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r2c2").value = " ";
+							}else{
+								document.getElementById("r3c2").value = x2;
+								document.getElementById("r2c2").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c2").value = sum;
+								document.getElementById("r3c2").value = " ";
+								document.getElementById("r2c2").value = " ";
+							}else{
+								document.getElementById("r4c2").value = x3;
+								document.getElementById("r3c2").value = x2;
+								document.getElementById("r2c2").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r4c2").value = x1;
+								document.getElementById("r1c2").value = " ";
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r4c2").value = x2;
+								document.getElementById("r2c2").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r4c2").value = x3;
+								document.getElementById("r3c2").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r4c2").value = x4;
+						}
+			}
+			
+			// third column function 
+			function thirdColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c3").value);
+					var x3 = Number(document.getElementById("r3c3").value);
+					var x2 = Number(document.getElementById("r2c3").value);
+					var x1 = Number(document.getElementById("r1c3").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = x2;
+								document.getElementById("r2c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c3").value = sum;
+								document.getElementById("r2c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r2c3").value = sum;
+								document.getElementById("r1c3").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r4c3").value = sum1;
+								document.getElementById("r3c3").value =  sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c3").value =  sum;
+								document.getElementById("r3c3").valu2 = x1;
+								document.getElementById("r2c3").value =  " ";
+								document.getElementById("r1c3").valu2 =  " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c3").value = x3;
+								document.getElementById("r3c3").value =  sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}else{
+							    document.getElementById("r4c3").value = x3;
+								document.getElementById("r3c3").value =  x2;
+								document.getElementById("r2c3").valu2 = x1;
+								document.getElementById("r1c3").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = x1;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r3c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}else{
+								document.getElementById("r3c3").value = x2;
+								document.getElementById("r2c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}else if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r3c3").value = sum;
+								document.getElementById("r1c3").value = " ";
+							}else{
+								document.getElementById("r2c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = x2;
+								document.getElementById("r2c3").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+							} 
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}else{
+								document.getElementById("r4c3").value = x2;
+								document.getElementById("r3c3").value = x1;
+								document.getElementById("r2c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r1c3").value = " ";
+							}else{
+								document.getElementById("r3c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r1c3").value = " ";
+							}else{
+								document.getElementById("r4c3").value = x3;
+								document.getElementById("r3c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r2c3").value = " ";
+							}else{
+								document.getElementById("r3c3").value = x2;
+								document.getElementById("r2c3").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c3").value = sum;
+								document.getElementById("r3c3").value = " ";
+								document.getElementById("r2c3").value = " ";
+							}else{
+								document.getElementById("r4c3").value = x3;
+								document.getElementById("r3c3").value = x2;
+								document.getElementById("r2c3").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r4c3").value = x1;
+								document.getElementById("r1c3").value = " ";
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r4c3").value = x2;
+								document.getElementById("r2c3").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r4c3").value = x3;
+								document.getElementById("r3c3").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r4c3").value = x4;
+						}
+			}
+			
+			// forth column function 
+			function forthColumn(){
+			debugger
+				var sum;
+				var sum1;
+					var x4 = Number(document.getElementById("r4c4").value);
+					var x3 = Number(document.getElementById("r3c4").value);
+					var x2 = Number(document.getElementById("r2c4").value);
+					var x1 = Number(document.getElementById("r1c4").value);
+					
+						if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = x2;
+								document.getElementById("r2c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c4").value = sum;
+								document.getElementById("r2c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r2c4").value = sum;
+								document.getElementById("r1c4").value = " ";
+							}else if(x1==x2 && x3==x4){
+								sum = x1 + x2;
+								sum1 = x3 + x4;
+								document.getElementById("r4c4").value = sum1;
+								document.getElementById("r3c4").value =  sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c4").value =  sum;
+								document.getElementById("r3c4").valu2 = x1;
+								document.getElementById("r2c4").value =  " ";
+								document.getElementById("r1c4").valu2 =  " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c4").value = x3;
+								document.getElementById("r3c4").value =  sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r4c4").value = x3;
+								document.getElementById("r3c4").value =  x2;
+								document.getElementById("r2c4").valu2 = x1;
+								document.getElementById("r1c4").valu2 = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = x1;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}else if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r3c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r3c4").value = x2;
+								document.getElementById("r2c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}else if(x1==x3){
+								sum = x1 + x3;
+								document.getElementById("r3c4").value = sum;
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r2c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x4 + x3;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = x2;
+								document.getElementById("r2c4").value = " ";
+							}else if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r3c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+							}
+						}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+							if(x1==x2){
+								sum = x1 + x2;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r4c4").value = x2;
+								document.getElementById("r3c4").value = x1;
+								document.getElementById("r2c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+							if(x1==x4){
+								sum = x1 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r3c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+							if(x1==x3){
+								sum = x1+x3;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r1c4").value = " ";
+							}else{
+								document.getElementById("r4c4").value = x3;
+								document.getElementById("r3c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+							}
+						}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+							if(x3==x4){
+								sum = x3 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+							if(x2==x4){
+								sum = x2 + x4;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r2c4").value = " ";
+							}else{
+								document.getElementById("r3c4").value = x2;
+								document.getElementById("r2c4").value = " ";
+							}
+						}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+							if(x2==x3){
+								sum = x2 + x3;
+								document.getElementById("r4c4").value = sum;
+								document.getElementById("r3c4").value = " ";
+								document.getElementById("r2c4").value = " ";
+							}else{
+								document.getElementById("r4c4").value = x3;
+								document.getElementById("r3c4").value = x2;
+								document.getElementById("r2c4").value = " ";
+							}
+						}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+								document.getElementById("r4c4").value = x1;
+								document.getElementById("r1c4").value = " ";
+						}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+								document.getElementById("r4c4").value = x2;
+								document.getElementById("r2c4").value = " ";
+						}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+								document.getElementById("r4c4").value = x3;
+								document.getElementById("r3c4").value = " ";
+						}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+								document.getElementById("r4c4").value = x4;
+						}
+			}
+			
+			function downRandom(){
+				var a1=Number(document.getElementById("r1c1").value);
+				var a2=Number(document.getElementById("r1c2").value);
+				var a3=Number(document.getElementById("r1c3").value);
+				var a4=Number(document.getElementById("r1c4").value);
+				var a5=Number(document.getElementById("r2c1").value);
+				var a6=Number(document.getElementById("r2c2").value);
+				var a7=Number(document.getElementById("r2c3").value);
+				var a8=Number(document.getElementById("r2c4").value);
+				var a9=Number(document.getElementById("r3c1").value);
+				var a10=Number(document.getElementById("r3c2").value);
+				var a11=Number(document.getElementById("r3c3").value);
+				var a12=Number(document.getElementById("r3c4").value);
+				var a13=Number(document.getElementById("r4c1").value);
+				var a14=Number(document.getElementById("r4c2").value);
+				var a15=Number(document.getElementById("r4c3").value);
+				var a16=Number(document.getElementById("r4c4").value);
+				
+				var as=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16];
+				var i;
+				
+				for(i=0;i<as.length;i++){
+					if(as[i]!==0){
+						if(as[i+4]==0 || as[i]==as[i+4]){
+							firstColumn();
+							secondColumn();
+							thirdColumn();
+							forthColumn();
+							randomPlace();
+							break
+						}
+					}
+				} 
+			}
+		}	
+		
+		// right direction function
+		function rightDirection(){
+			rightRandom();
+			
+			// first row function
+			function firstRow(){
+			debugger
+				var sum;
+				var sum1;
+					var x1 = Number(document.getElementById("r1c1").value);
+					var x2 = Number(document.getElementById("r1c2").value);
+					var x3 = Number(document.getElementById("r1c3").value);
+					var x4 = Number(document.getElementById("r1c4").value);
+					
+					if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c2").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r1c2").value = sum;
+							document.getElementById("r1c1").value = " ";
+						}else if(x1==x2 && x3==x4){
+							sum = x1 + x2;
+							sum1 = x3 + x4;
+							document.getElementById("r1c4").value = sum1;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r1c4").value = x3;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c4").value = x3;
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+						if(x4==x2){
+							sum = x2 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}else if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c2").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r1c3").value = sum;
+							document.getElementById("r1c2").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+						if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c4").value = x2;
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c2").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+						if(x1==x4){
+							sum = x1 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+						if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = " ";
+							document.getElementById("r1c1").value = " ";
+						}else{
+							document.getElementById("r1c4").value = x3;
+							document.getElementById("r1c3").value = x1;
+							document.getElementById("r1c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+						if(x2==x4){
+							sum = x2 + x4;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c2").value = " ";
+						}else{
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r1c4").value = sum;
+							document.getElementById("r1c3").value = " ";
+							document.getElementById("r1c2").value = " ";
+						}else{
+							document.getElementById("r1c4").value = x3;
+							document.getElementById("r1c3").value = x2;
+							document.getElementById("r1c2").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r1c4").value = x1;
+						document.getElementById("r1c1").value = " ";
+					}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r1c4").value = x2;
+						document.getElementById("r1c2").value = " ";
+					}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r1c4").value = x3;
+						document.getElementById("r1c3").value = " ";
+					}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r1c4").value = x4;
+					}
+			}
+			// second row function
+			function secondRow(){
+			debugger
+				var sum;
+				var sum1;
+					var x1 = Number(document.getElementById("r2c1").value);
+					var x2 = Number(document.getElementById("r2c2").value);
+					var x3 = Number(document.getElementById("r2c3").value);
+					var x4 = Number(document.getElementById("r2c4").value);
+					
+					if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c2").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r2c2").value = sum;
+							document.getElementById("r2c1").value = " ";
+						}else if(x1==x2 && x3==x4){
+							sum = x1  + x2;
+							sum1 = x3 + x4;
+							document.getElementById("r2c4").value = sum1;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r2c4").value = x3;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c4").value = x3;
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+						if(x4==x2){
+							sum = x2 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}else if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c2").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r2c3").value = sum;
+							document.getElementById("r2c2").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+						if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c4").value = x2;
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c2").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+						if(x1==x4){
+							sum = x1 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+						if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = " ";
+							document.getElementById("r2c1").value = " ";
+						}else{
+							document.getElementById("r2c4").value = x3;
+							document.getElementById("r2c3").value = x1;
+							document.getElementById("r2c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+						if(x2==x4){
+							sum = x2 + x4;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c2").value = " ";
+						}else{
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r2c4").value = sum;
+							document.getElementById("r2c3").value = " ";
+							document.getElementById("r2c2").value = " ";
+						}else{
+							document.getElementById("r2c4").value = x3;
+							document.getElementById("r2c3").value = x2;
+							document.getElementById("r2c2").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r2c4").value = x1;
+						document.getElementById("r2c1").value = " ";
+					}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r2c4").value = x2;
+						document.getElementById("r2c2").value = " ";
+					}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r2c4").value = x3;
+						document.getElementById("r2c3").value = " ";
+					}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r2c4").value = x4;
+					}
+			}
+			
+			// third row function
+			function thirdRow(){
+			debugger
+				var sum;
+				var sum1;
+					var x1 = Number(document.getElementById("r3c1").value);
+					var x2 = Number(document.getElementById("r3c2").value);
+					var x3 = Number(document.getElementById("r3c3").value);
+					var x4 = Number(document.getElementById("r3c4").value);
+					
+					if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c2").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r3c2").value = sum;
+							document.getElementById("r3c1").value = " ";
+						}else if(x1==x2 && x3==x4){
+							sum = x1  + x2;
+							sum1 = x3 + x4;
+							document.getElementById("r3c4").value = sum1;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r3c4").value = x3;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c4").value = x3;
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+						if(x4==x2){
+							sum = x2 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}else if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c2").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r3c3").value = sum;
+							document.getElementById("r3c2").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+						if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c4").value = x2;
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c2").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+						if(x1==x4){
+							sum = x1 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+						if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = " ";
+							document.getElementById("r3c1").value = " ";
+						}else{
+							document.getElementById("r3c4").value = x3;
+							document.getElementById("r3c3").value = x1;
+							document.getElementById("r3c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+						if(x2==x4){
+							sum = x2 + x4;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c2").value = " ";
+						}else{
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r3c4").value = sum;
+							document.getElementById("r3c3").value = " ";
+							document.getElementById("r3c2").value = " ";
+						}else{
+							document.getElementById("r3c4").value = x3;
+							document.getElementById("r3c3").value = x2;
+							document.getElementById("r3c2").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r3c4").value = x1;
+						document.getElementById("r3c1").value = " ";
+					}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r3c4").value = x2;
+						document.getElementById("r3c2").value = " ";
+					}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r3c4").value = x3;
+						document.getElementById("r3c3").value = " ";
+					}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r3c4").value = x4;
+					}
+			}
+			
+			// forth row function
+			function forthRow(){
+			debugger
+				var sum;
+				var sum1;
+					var x1 = Number(document.getElementById("r4c1").value);
+					var x2 = Number(document.getElementById("r4c2").value);
+					var x3 = Number(document.getElementById("r4c3").value);
+					var x4 = Number(document.getElementById("r4c4").value);
+					
+					if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c2").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r4c2").value = sum;
+							document.getElementById("r4c1").value = " ";
+						}else if(x1==x2 && x3==x4){
+							sum = x1  + x2;
+							sum1 = x3 + x4;
+							document.getElementById("r4c4").value = sum1;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r4c4").value = x3;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c4").value = x3;
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+						if(x4==x2){
+							sum = x2 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}else if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c2").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = " ";
+						}else if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r4c3").value = sum;
+							document.getElementById("r4c2").value = " ";
+						}
+					}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+						if(x1==x2){
+							sum = x1 + x2;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c4").value = x2;
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c2").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+						if(x1==x4){
+							sum = x1 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+						if(x3==x4){
+							sum = x3 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+						if(x1==x3){
+							sum = x1 + x3;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = " ";
+							document.getElementById("r4c1").value = " ";
+						}else{
+							document.getElementById("r4c4").value = x3;
+							document.getElementById("r4c3").value = x1;
+							document.getElementById("r4c1").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+						if(x2==x4){
+							sum = x2 + x4;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c2").value = " ";
+						}else{
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = " ";
+						}
+					}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+						if(x2==x3){
+							sum = x2 + x3;
+							document.getElementById("r4c4").value = sum;
+							document.getElementById("r4c3").value = " ";
+							document.getElementById("r4c2").value = " ";
+						}else{
+							document.getElementById("r4c4").value = x3;
+							document.getElementById("r4c3").value = x2;
+							document.getElementById("r4c2").value = " ";
+						}
+					}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r4c4").value = x1;
+						document.getElementById("r4c1").value = " ";
+					}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r4c4").value = x2;
+						document.getElementById("r4c2").value = " ";
+					}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r4c4").value = x3;
+						document.getElementById("r4c3").value = " ";
+					}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r4c4").value = x4;
+					}
+			}
+			
+			function rightRandom(){
+				var a1=Number(document.getElementById("r1c1").value);
+				var a2=Number(document.getElementById("r1c2").value);
+				var a3=Number(document.getElementById("r1c3").value);
+				var a4=Number(document.getElementById("r1c4").value);
+				var a5=Number(document.getElementById("r2c1").value);
+				var a6=Number(document.getElementById("r2c2").value);
+				var a7=Number(document.getElementById("r2c3").value);
+				var a8=Number(document.getElementById("r2c4").value);
+				var a9=Number(document.getElementById("r3c1").value);
+				var a10=Number(document.getElementById("r3c2").value);
+				var a11=Number(document.getElementById("r3c3").value);
+				var a12=Number(document.getElementById("r3c4").value);
+				var a13=Number(document.getElementById("r4c1").value);
+				var a14=Number(document.getElementById("r4c2").value);
+				var a15=Number(document.getElementById("r4c3").value);
+				var a16=Number(document.getElementById("r4c4").value);
+				
+				var as=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16];
+				var i;
+				
+				for(i=0;i<as.length;i++){
+					if(as[i]!==0){
+						if(i==3 || i==7 || i==11 || i==15){continue;}
+						if(as[i+1]==0 || as[i]==as[i+1]){
+							firstRow();
+							secondRow();
+							thirdRow();
+							forthRow();
+							randomPlace();
+							break
+						}
+					}
+				} 
+			}
+			
+		}
+		
+		
+		//left direction
+		function leftDirection(){
+			leftRandom();
+			
+			// first row left function
+			function firstRow(){
+			debugger
+				var sum;
+				var sum1;
+				var x4 = Number(document.getElementById("r1c4").value);
+				var x3 = Number(document.getElementById("r1c3").value);
+				var x2 = Number(document.getElementById("r1c2").value);
+				var x1 = Number(document.getElementById("r1c1").value); 
+				
+				if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r1c2").value = sum;
+						document.getElementById("r1c3").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r1c3").value = sum;
+						document.getElementById("r1c4").value = " ";
+					}else if(x1==x2 && x3==x4){
+						sum = x1 + x2;
+						sum1 = x3 + x4;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = sum1;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r1c2").value = sum;
+						document.getElementById("r1c3").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}else if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r1c2").value = sum;
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c3").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+					if(x1==x3){
+						sum = x1 + x3;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r1c2").value = sum;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r1c1").value = x2;
+						document.getElementById("r1c2").value = sum;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c1").value = x2;
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+					if(x1==x4){
+						sum = x1 + x4;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+					if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c1").value = x2;
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+					if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}else{
+						document.getElementById("r1c1").value = x3;
+						document.getElementById("r1c2").value = x4;
+						document.getElementById("r1c3").value = " ";
+						document.getElementById("r1c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+					if(x3==x1){
+						sum = x3 + x1;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c3").value = " ";
+					}else{
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r1c1").value = sum;
+						document.getElementById("r1c2").value = " ";
+						document.getElementById("r1c3").value = " ";
+					}else{
+						document.getElementById("r1c1").value = x2;
+						document.getElementById("r1c2").value = x3;
+						document.getElementById("r1c3").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r1c1").value = x1;
+				}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r1c1").value = x2;
+						document.getElementById("r1c2").value = " ";
+				}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r1c1").value = x3;
+						document.getElementById("r1c3").value = " ";
+				}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r1c1").value = x4;
+						document.getElementById("r1c4").value = " ";
+				}
+			}
+			
+			// second row left function
+			function secondRow(){
+			debugger
+				var sum;
+				var sum1;
+				var x4 = Number(document.getElementById("r2c4").value);
+				var x3 = Number(document.getElementById("r2c3").value);
+				var x2 = Number(document.getElementById("r2c2").value);
+				var x1 = Number(document.getElementById("r2c1").value); 
+				
+				if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r2c2").value = sum;
+						document.getElementById("r2c3").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r2c3").value = sum;
+						document.getElementById("r2c4").value = " ";
+					}else if(x1==x2 && x3==x4){
+						sum = x1 + x2;
+						sum1 = x3 + x4;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = sum1;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r2c2").value = sum;
+						document.getElementById("r2c3").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}else if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r2c2").value = sum;
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c3").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+					if(x1==x3){
+						sum = x1 + x3;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c4").value = " ";
+						document.getElementById("r2c3").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r2c2").value = sum;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r2c1").value = x2;
+						document.getElementById("r2c2").value = sum;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c1").value = x2;
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+					if(x1==x4){
+						sum = x1 + x4;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+					if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c1").value = x2;
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+					if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}else{
+						document.getElementById("r2c1").value = x3;
+						document.getElementById("r2c2").value = x4;
+						document.getElementById("r2c3").value = " ";
+						document.getElementById("r2c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+					if(x3==x1){
+						sum = x3 + x1;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c3").value = " ";
+					}else{
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r2c1").value = sum;
+						document.getElementById("r2c2").value = " ";
+						document.getElementById("r2c3").value = " ";
+					}else{
+						document.getElementById("r2c1").value = x2;
+						document.getElementById("r2c2").value = x3;
+						document.getElementById("r2c3").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r2c1").value = x1;
+				}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r2c1").value = x2;
+						document.getElementById("r2c2").value = " ";
+				}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r2c1").value = x3;
+						document.getElementById("r2c3").value = " ";
+				}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r2c1").value = x4;
+						document.getElementById("r2c4").value = " ";
+				}
+			}
+			
+			// third row left function
+			function thirdRow(){
+			debugger
+				var sum;
+				var sum1;
+				var x4 = Number(document.getElementById("r3c4").value);
+				var x3 = Number(document.getElementById("r3c3").value);
+				var x2 = Number(document.getElementById("r3c2").value);
+				var x1 = Number(document.getElementById("r3c1").value); 
+				
+				if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r3c2").value = sum;
+						document.getElementById("r3c3").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r3c3").value = sum;
+						document.getElementById("r3c4").value = " ";
+					}else if(x1==x2 && x3==x4){
+						sum = x1 + x2;
+						sum1 = x3 + x4;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = sum1;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r3c2").value = sum;
+						document.getElementById("r3c3").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}else if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r3c2").value = sum;
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c3").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+					if(x1==x3){
+						sum = x1 + x3;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c4").value = " ";
+						document.getElementById("r3c3").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r3c2").value = sum;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r3c1").value = x2;
+						document.getElementById("r3c2").value = sum;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c1").value = x2;
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+					if(x1==x4){
+						sum = x1 + x4;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+					if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c1").value = x2;
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+					if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}else{
+						document.getElementById("r3c1").value = x3;
+						document.getElementById("r3c2").value = x4;
+						document.getElementById("r3c3").value = " ";
+						document.getElementById("r3c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+					if(x3==x1){
+						sum = x3 + x1;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c3").value = " ";
+					}else{
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r3c1").value = sum;
+						document.getElementById("r3c2").value = " ";
+						document.getElementById("r3c3").value = " ";
+					}else{
+						document.getElementById("r3c1").value = x2;
+						document.getElementById("r3c2").value = x3;
+						document.getElementById("r3c3").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r3c1").value = x1;
+				}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r3c1").value = x2;
+						document.getElementById("r3c2").value = " ";
+				}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r3c1").value = x3;
+						document.getElementById("r3c3").value = " ";
+				}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r3c1").value = x4;
+						document.getElementById("r3c4").value = " ";
+				}
+			}
+			
+			// forth row left function
+			function forthRow(){
+			debugger
+				var sum;
+				var sum1;
+				var x4 = Number(document.getElementById("r4c4").value);
+				var x3 = Number(document.getElementById("r4c3").value);
+				var x2 = Number(document.getElementById("r4c2").value);
+				var x1 = Number(document.getElementById("r4c1").value); 
+				
+				if(x1!==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r4c2").value = sum;
+						document.getElementById("r4c3").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r4c3").value = sum;
+						document.getElementById("r4c4").value = " ";
+					}else if(x1==x2 && x3==x4){
+						sum = x1 + x2;
+						sum1 = x3 + x4;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = sum1;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3!==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = " ";
+					}else if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r4c2").value = sum;
+						document.getElementById("r4c3").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4!==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}else if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r4c2").value = sum;
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c3").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4!==0){
+					if(x1==x3){
+						sum = x1 + x3;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r4c2").value = sum;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4!==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r4c1").value = x2;
+						document.getElementById("r4c2").value = sum;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c1").value = x2;
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1!==0 && x2!==0 && x3==0 && x4==0){
+					if(x1==x2){
+						sum = x1 + x2;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4!==0){
+					if(x1==x4){
+						sum = x1 + x4;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3==0 && x4!==0){
+					if(x2==x4){
+						sum = x2 + x4;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c1").value = x2;
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1==0 && x2==0 && x3!==0 && x4!==0){
+					if(x3==x4){
+						sum = x3 + x4;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}else{
+						document.getElementById("r4c1").value = x3;
+						document.getElementById("r4c2").value = x4;
+						document.getElementById("r4c3").value = " ";
+						document.getElementById("r4c4").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3!==0 && x4==0){
+					if(x3==x1){
+						sum = x3 + x1;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c3").value = " ";
+					}else{
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = " ";
+					}
+				}else if(x1==0 && x2!==0 && x3!==0 && x4==0){
+					if(x2==x3){
+						sum = x2 + x3;
+						document.getElementById("r4c1").value = sum;
+						document.getElementById("r4c2").value = " ";
+						document.getElementById("r4c3").value = " ";
+					}else{
+						document.getElementById("r4c1").value = x2;
+						document.getElementById("r4c2").value = x3;
+						document.getElementById("r4c3").value = " ";
+					}
+				}else if(x1!==0 && x2==0 && x3==0 && x4==0){
+						document.getElementById("r4c1").value = x1;
+				}else if(x1==0 && x2!==0 && x3==0 && x4==0){
+						document.getElementById("r4c1").value = x2;
+						document.getElementById("r4c2").value = " ";
+				}else if(x1==0 && x2==0 && x3!==0 && x4==0){
+						document.getElementById("r4c1").value = x3;
+						document.getElementById("r4c3").value = " ";
+				}else if(x1==0 && x2==0 && x3==0 && x4!==0){
+						document.getElementById("r4c1").value = x4;
+						document.getElementById("r4c4").value = " ";
+				}
+			}
+			
+			function leftRandom(){
+				var a1=Number(document.getElementById("r1c1").value);
+				var a2=Number(document.getElementById("r1c2").value);
+				var a3=Number(document.getElementById("r1c3").value);
+				var a4=Number(document.getElementById("r1c4").value);
+				var a5=Number(document.getElementById("r2c1").value);
+				var a6=Number(document.getElementById("r2c2").value);
+				var a7=Number(document.getElementById("r2c3").value);
+				var a8=Number(document.getElementById("r2c4").value);
+				var a9=Number(document.getElementById("r3c1").value);
+				var a10=Number(document.getElementById("r3c2").value);
+				var a11=Number(document.getElementById("r3c3").value);
+				var a12=Number(document.getElementById("r3c4").value);
+				var a13=Number(document.getElementById("r4c1").value);
+				var a14=Number(document.getElementById("r4c2").value);
+				var a15=Number(document.getElementById("r4c3").value);
+				var a16=Number(document.getElementById("r4c4").value);
+				
+				var as=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16];
+				var i;
+				
+				for(i=0;i<as.length;i++){
+					if(as[i]!==0){
+					if(i==0 || i==4 || i==8 || i==12){continue;}
+						if(as[i-1]==0 || as[i]==as[i-1]){
+							firstRow();
+							secondRow();
+							thirdRow();
+							forthRow();
+							randomPlace();
+							break
+						}
+					}
+				} 
+			}
+		}
+		
+		// win or loss function
+		function win(){
+			var b1 = Number(document.getElementById("r1c1").value);
+			var b2 = Number(document.getElementById("r1c2").value);
+			var b3 = Number(document.getElementById("r1c3").value);
+			var b4 = Number(document.getElementById("r1c4").value);
+			var b5 = Number(document.getElementById("r2c1").value);
+			var b6 = Number(document.getElementById("r2c2").value);
+			var b7 = Number(document.getElementById("r2c3").value);
+			var b8 = Number(document.getElementById("r2c4").value);
+			var b9 = Number(document.getElementById("r3c1").value);
+			var b10 = Number(document.getElementById("r3c2").value);
+			var b11 = Number(document.getElementById("r3c3").value);
+			var b12 = Number(document.getElementById("r3c4").value);
+			var b13 = Number(document.getElementById("r4c1").value);
+			var b14 = Number(document.getElementById("r4c2").value);
+			var b15 = Number(document.getElementById("r4c3").value);
+			var b16 = Number(document.getElementById("r4c4").value);
+			var x;
+			var arr=[b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b15,b16];
+			for(x=0;x<arr.length;x++){
+				if(arr[x]==2048){
+					alert("Congratulation!! You win the game.");
+				}
+			}
+			
+			if(b1!==0 &&b2!==0 &&b3!==0 &&b4!==0 &&b5!==0 &&b6!==0
+			&&b7!==0 &&b8!==0 &&b9!==0 &&b10!==0 &&b11!==0 &&b12!==0
+			&&b13!==0 &&b14!==0 &&b15!==0 &&b16!==0){
+				
+					if(b1!==b2 && b1!==b5 && b2!==b3 && b2!==b6 && b3!==b4 && b3!==b7
+				&& b4!==b8 && b5!==b6 && b5!==b9 && b6!==b7 && b6!==b10 && b7!==b8
+				&& b7!==b11 && b8!==b12 && b9!==b10 && b9!==b13 && b10!==b11 && b10!==b14
+				&& b11!==b12 && b11!==b15 && b12!==b16 && b13!==b14 && b14!==b15 && b15!==b16
+				){
+					alert("Opps! You loss the game");
+				}
+			}
+		}
+		
+		
+		</script>
+</body>
+</html>
